@@ -17,7 +17,7 @@ void board_randomize(GameBoard* board) {
 
 //Helper function to determine legality of grid checking
 int is_valid_pos(int x, int y) {
-  if (x < 0 || x > BOARD_COLS || y < 0 || y > BOARD_ROWS) {
+  if (x < 0 || x == BOARD_COLS || y < 0 || y == BOARD_ROWS) {
     return 0;
   }
   return 1; 
@@ -80,7 +80,7 @@ int is_next_to_village(GameBoard* board) {
 
 //Loop through all tiles, count villages. -1 food per tile
 //Must recount food tiles
-//This is called on every placement
+//This is called on every placement. Inefficient but yeah.
 void tile_recount(GameBoard* board) {
   board->villages = 0;
   board->food = 0;

@@ -178,7 +178,7 @@ void input_handle(int s, int* cursor_x, int* cursor_y, GameBoard* board) {
     }
     break;
     case 'q':
-    exit(0);
+    board->end_flag = 1;
     break;
   }
     refresh();
@@ -201,3 +201,24 @@ int cursor_bound_check(int cursor_x, int cursor_y) {
 
   return 1;
 }
+
+
+void game_end(GameBoard *board) {
+  if (board->food >= board->villages) {
+    attrset(COLOR_PAIR(2));
+    mvaddstr(getmaxy(stdscr)/2 - 4, getmaxx(stdscr)/2 - 20, "                YOU WON                 ");
+    mvaddstr(getmaxy(stdscr)/2 - 3 , getmaxx(stdscr)/2 - 20, "               :)                       ");
+  }
+  else {
+    attrset(COLOR_PAIR(1));
+    mvaddstr(getmaxy(stdscr)/2 - 4, getmaxx(stdscr)/2 - 20, "                YOU LOST                 ");
+    mvaddstr(getmaxy(stdscr)/2 - 3 , getmaxx(stdscr)/2 - 20, "           YOUR VILLAGE DIED :(          ");
+  }
+  refresh();
+  for (;;) {
+    
+  }
+}
+
+
+

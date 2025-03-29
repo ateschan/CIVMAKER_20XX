@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     GameBoard board;
     board.villages = 0;
     board.food = 0;
+    board.end_flag = 0;
 
     memset(board.boardGrid, '.', sizeof board.boardGrid); // *
     board_randomize(&board);
@@ -50,6 +51,10 @@ int main(int argc, char *argv[])
     int ch = getch();
     input_handle(ch, &cursor_x, &cursor_y, &board);
     move(cursor_y, cursor_x);
+    if (board.end_flag == 1) {
+      game_end(&board);
+      return 0;
+    }
   }
 }
 

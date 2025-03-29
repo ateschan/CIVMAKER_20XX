@@ -15,6 +15,7 @@ typedef struct GameBoard {
   
   int food;
   int villages;
+  int end_flag;
 
 } GameBoard;
 
